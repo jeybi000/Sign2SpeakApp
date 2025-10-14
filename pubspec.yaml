@@ -1,0 +1,66 @@
+name: sign2speak
+description: A Flutter onboarding UI for Sign2Speak+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.2.1
+  smooth_page_indicator: ^1.2.0+3
+  http: ^1.2.2
+  flutter_tts: ^4.2.3
+  provider: ^6.1.1
+  web_socket_channel: ^2.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter_icons:
+  android: true
+  image_path: "assets/mobileappICON.jpg"
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/hand_logo.png
+    - assets/character.png
+    - assets/rile.png
+    - assets/perez.jpg
+    - assets/solmiano.jpg
+    - assets/endozo.jpg
+    - assets/speaker.png
+    - assets/scsLOGO.png
+    - assets/cctLOGO.png
+    - assets/letterA.png
+    - assets/letterB.png
+    - assets/letterC.png
+    - assets/letterD.png
+    - assets/letterE.png
+    - assets/letterF.png
+    - assets/letterG.png
+    - assets/letterH.png
+    - assets/letterI.png
+    - assets/letterJ.png
+    - assets/letterK.png
+    - assets/letterL.png
+    - assets/letterM.png
+    - assets/letterN.png
+    - assets/letterO.png
+    - assets/letterP.png
+    - assets/letterQ.png
+    - assets/letterR.png
+    - assets/letterS.png
+    - assets/letterT.png
+    - assets/letterU.png
+    - assets/letterV.png
+    - assets/letterW.png
+    - assets/letterX.png
+    - assets/letterY.png
+    - assets/letterZ.png
