@@ -13,7 +13,6 @@ class Sign2SpeakApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // keep it simple; page draws its own gradient background
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Colors.transparent,
         useMaterial3: false,
@@ -33,7 +32,6 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _controller = PageController();
 
-  // Words/Home/Wi-Fi scheme gradient
   LinearGradient get _backgroundGradient => const LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
@@ -49,13 +47,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          // 1) Gradient background (no animated layer)
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(gradient: _backgroundGradient),
             ),
           ),
-          // 2) Content
           SafeArea(
             child: Column(
               children: [
@@ -78,7 +74,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               fontFamily: "SF Pro Display",
                               fontWeight: FontWeight.bold,
                               fontSize: 28,
-                              color: Colors.white, // headline on dark bg
+                              color: Colors.white, 
                             ),
                           ),
                           SizedBox(height: 5),
@@ -88,7 +84,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             style: TextStyle(
                               fontFamily: "SF Pro Display",
                               fontSize: 16,
-                              color: Colors.white70, // softer body
+                              color: Colors.white70, 
                             ),
                           ),
                         ],
@@ -133,13 +129,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ),
 
-                // Dots with scheme colors
                 SmoothPageIndicator(
                   controller: _controller,
                   count: 2,
                   effect: const ExpandingDotsEffect(
-                    activeDotColor: Color(0xFF66A3FF), // light blue accent
-                    dotColor: Color(0xFF2A3E68), // muted blue from gradient
+                    activeDotColor: Color(0xFF66A3FF), 
+                    dotColor: Color(0xFF2A3E68), 
                     dotHeight: 8,
                     dotWidth: 8,
                     expansionFactor: 3,
@@ -148,7 +143,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
                 const SizedBox(height: 24),
 
-                // Next / Continue button
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: SizedBox(

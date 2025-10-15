@@ -382,7 +382,7 @@ class _WifiStatusPageState extends State<WifiStatusPage> {
                               offset: Offset(0, 6),
                             ),
                           ],
-                          border: Border.all(color: Color(0x0F000000)),
+                          border: Border.all(color: const Color(0x0F000000)),
                         ),
                         child: Column(
                           children: [

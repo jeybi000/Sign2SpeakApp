@@ -103,6 +103,7 @@ class AboutScreen extends StatelessWidget {
                           style: GoogleFonts.poppins(
                             fontSize: 13,
                             fontWeight: FontWeight.w400,
+                            // ignore: deprecated_member_use
                             color: Colors.white.withOpacity(.88),
                             height: 1.5,
                           ),
@@ -317,7 +318,7 @@ class AboutScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 8),
-            Icon(Icons.chevron_right, color: const Color(0xFF9AA0A6), size: 22),
+           const Icon(Icons.chevron_right, color: Color(0xFF9AA0A6), size: 22),
           ],
         ),
       ),
