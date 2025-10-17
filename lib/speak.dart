@@ -19,10 +19,8 @@ class _SpeakScreenState extends State<SpeakScreen> {
   final TextEditingController _gesturesCtrl = TextEditingController();
   final TextEditingController _textToSpeakCtrl = TextEditingController();
 
-  // --- Added: WebSocket members ---
   WebSocketChannel? _channel;
   final String esp32Ip = 'ws://192.168.4.1:80';
-  // --------------------------------
 
   LinearGradient get _backgroundGradient => const LinearGradient(
         begin: Alignment.topLeft,
@@ -55,14 +53,13 @@ class _SpeakScreenState extends State<SpeakScreen> {
     super.initState();
     _initTts();
 
-    // --- Added: Connect to ESP32 WebSocket on start ---
+    // Connect to ESP32 WebSocket on start
     _connectWebSocket();
-    // --------------------------------------------------
   }
 
   Future<void> _initTts() async {
     await _tts.awaitSpeakCompletion(true);
-    await _tts.setLanguage('fil-US');
+    await _tts.setLanguage('en-US');
     await _tts.setSpeechRate(0.5);
     await _tts.setPitch(1.0);
     await _tts.setVolume(1.0);
@@ -81,34 +78,51 @@ class _SpeakScreenState extends State<SpeakScreen> {
     }
   }
 
-  // --- Added: WebSocket connection + handlers ---
+  // WebSocket connection
   void _connectWebSocket() {
-    // Close any previous connection cleanly first
     _channel?.sink.close(status.goingAway);
 
     try {
       _channel = WebSocketChannel.connect(Uri.parse(esp32Ip));
       _channel!.stream.listen(
-        (message) {
+        (message) async {
           final newData = message.toString().trim();
           if (newData.isEmpty) return;
 
-          // Append incoming message (uppercased) to "Collected Gestures"
           if (!mounted) return;
+
           setState(() {
             _gesturesCtrl.text += newData.toUpperCase();
             _gesturesCtrl.selection = TextSelection.fromPosition(
               TextPosition(offset: _gesturesCtrl.text.length),
             );
           });
+
+          try {
+            await _tts.stop();
+            await _tts.speak(newData.toUpperCase());
+
+            setState(() {
+              if (_textToSpeakCtrl.text.isNotEmpty) {
+                _textToSpeakCtrl.text += ' ';
+              }
+              _textToSpeakCtrl.text += newData.toUpperCase();
+            });
+          } catch (e) {
+            if (mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Speech error: $e'),
+                  behavior: SnackBarBehavior.floating,
+                ),
+              );
+            }
+          }
         },
         onError: (error) {
-          // Optionally log error
-          // print("WebSocket error: $error");
           _retryConnection();
         },
         onDone: () {
-          // print("WebSocket disconnected");
           _retryConnection();
         },
         cancelOnError: true,
@@ -123,7 +137,6 @@ class _SpeakScreenState extends State<SpeakScreen> {
       if (mounted) _connectWebSocket();
     });
   }
-  // ----------------------------------------------------
 
   Future<void> _speakCollected() async {
     final text = _gesturesCtrl.text.trim();
@@ -132,7 +145,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content:
-              Text('Nothing to speak. Enter text in "Collected Gestures".'),
+              Text('Nothing to speak.'),
           behavior: SnackBarBehavior.floating,
         ),
       );
@@ -156,11 +169,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
   void dispose() {
     _gesturesCtrl.dispose();
     _textToSpeakCtrl.dispose();
-
-    // --- Added: Close WebSocket on dispose ---
     _channel?.sink.close(status.goingAway);
-    // ----------------------------------------
-
     super.dispose();
   }
 
@@ -203,8 +212,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    Text(
-                      "Sign2Speak+",
+                    Text("Sign2Speak+",
                       style: GoogleFonts.inter(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
@@ -214,8 +222,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
                   ],
                 ),
                 const SizedBox(height: 40),
-                Text(
-                  "Sign your words and hear them speak—real-time magic with every move!",
+                Text("Sign your words and hear them speak—real-time magic with every move!",
                   style: GoogleFonts.inter(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
@@ -224,8 +231,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                Text(
-                  "Text to speak!",
+                Text("Data Logs",
                   style: GoogleFonts.inter(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
@@ -246,21 +252,23 @@ class _SpeakScreenState extends State<SpeakScreen> {
                       ),
                     ],
                   ),
-                  child: TextField(
-                    controller: _textToSpeakCtrl,
-                    maxLines: null,
-                    expands: true,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.all(12),
-                      hintText: 'Optional: type anything to speak…',
+                  child: SingleChildScrollView(
+                    reverse: false,
+                    child: TextField(
+                      controller: _textToSpeakCtrl,
+                      readOnly: true,
+                      maxLines: null,
+                      expands: false,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.all(12),
+                      ),
+                      style: const TextStyle(color: Colors.black),
                     ),
-                    style: const TextStyle(color: Colors.black),
                   ),
                 ),
                 const SizedBox(height: 40),
-                Text(
-                  "Collected Gestures",
+                Text("Gestures",
                   style: GoogleFonts.inter(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
@@ -329,8 +337,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: Text(
-                        "Speech",
+                      child: Text("Speech",
                         style: GoogleFonts.inter(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,

@@ -33,8 +33,7 @@ class RScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           centerTitle: true,
-          title: Text(
-            "Profile",
+          title: Text("Profile",
             style: GoogleFonts.poppins(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -65,8 +64,7 @@ class RScreen extends StatelessWidget {
                 backgroundImage: AssetImage("assets/rile.png"),
               ),
               const SizedBox(height: 16),
-              Text(
-                "John Dominic",
+              Text("John Dominic Rile",
                 style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
@@ -76,7 +74,7 @@ class RScreen extends StatelessWidget {
               const SizedBox(height: 4),
 
               Text(
-                "UI/UX Mobile Developer",
+                "UI/UX",
                 style: GoogleFonts.poppins(
                   fontSize: 15,
                   fontWeight: FontWeight.w400,
@@ -94,8 +92,7 @@ class RScreen extends StatelessWidget {
               _buildInfoTile(Icons.cake, "Birth Date", "1 March 2004"),
 
               const SizedBox(height: 40),
-              Text(
-                "Sign2Speak+",
+              Text("Sign2Speak+",
                 style: GoogleFonts.poppins(
                   fontSize: 12,
                   fontWeight: FontWeight.w400,

@@ -33,8 +33,7 @@ class MScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           centerTitle: true,
-          title: Text(
-            "Profile",
+          title: Text("Profile",
             style: GoogleFonts.poppins(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -64,16 +63,14 @@ class MScreen extends StatelessWidget {
                 backgroundImage: AssetImage("assets/solmiano.jpg"),
               ),
               const SizedBox(height: 16),
-              Text(
-                "Dennis Marvin Solmiano",
+              Text("Dennis Marvin Solmiano",
                 style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
                   color: Colors.white,
                 ),
               ),
-              Text(
-                "Assistant Programmer",
+              Text("Documentation",
                 style: GoogleFonts.poppins(
                   fontSize: 15,
                   fontWeight: FontWeight.w400,
@@ -88,8 +85,7 @@ class MScreen extends StatelessWidget {
               _buildInfoTile(Icons.phone, "Phone Number", "+639112233445"),
               _buildInfoTile(Icons.cake, "Birth Date", "14 September 2003"),
               const SizedBox(height: 40),
-              Text(
-                "Sign2Speak+",
+              Text("Sign2Speak+",
                 style: GoogleFonts.poppins(
                   fontSize: 12,
                   color: Colors.white54,

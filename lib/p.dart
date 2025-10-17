@@ -5,7 +5,6 @@ import 'about.dart';
 class PScreen extends StatelessWidget {
   const PScreen({super.key});
 
-  // Background gradient
   LinearGradient get _backgroundGradient => const LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
@@ -16,7 +15,6 @@ class PScreen extends StatelessWidget {
         ],
       );
 
-  // Card gradient for info tiles
   LinearGradient get _cardGradient => const LinearGradient(
         begin: Alignment.centerLeft,
         end: Alignment.centerRight,
@@ -35,8 +33,7 @@ class PScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           centerTitle: true,
-          title: Text(
-            "Profile",
+          title: Text("Profile",
             style: GoogleFonts.poppins(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -66,16 +63,14 @@ class PScreen extends StatelessWidget {
                 backgroundImage: AssetImage("assets/perez.jpg"),
               ),
               const SizedBox(height: 16),
-              Text(
-                "John Vincent Perez",
+              Text("John Vincent Perez",
                 style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
                   color: Colors.white,
                 ),
               ),
-              Text(
-                "Head Developer",
+              Text("Programmer",
                 style: GoogleFonts.poppins(
                   fontSize: 15,
                   fontWeight: FontWeight.w400,
@@ -89,8 +84,7 @@ class PScreen extends StatelessWidget {
               _buildInfoTile(Icons.phone, "Phone Number", "09298878936"),
               _buildInfoTile(Icons.cake, "Birth Date", "01 April 2002"),
               const SizedBox(height: 40),
-              Text(
-                "Sign2Speak+",
+              Text("Sign2Speak+",
                 style: GoogleFonts.poppins(
                   fontSize: 12,
                   color: Colors.white54,

@@ -33,8 +33,7 @@ class JScreen extends StatelessWidget {
         appBar: AppBar(
           elevation: 0,
           centerTitle: true,
-          title: Text(
-            "Profile",
+          title: Text("Profile",
             style: GoogleFonts.poppins(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -64,16 +63,14 @@ class JScreen extends StatelessWidget {
                 backgroundImage: AssetImage("assets/endozo.jpg"),
               ),
               const SizedBox(height: 16),
-              Text(
-                "Jessica Endozo",
+              Text("Jessica Endozo",
                 style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
                   color: Colors.white,
                 ),
               ),
-              Text(
-                "Documentation",
+              Text("Documentation",
                 style: GoogleFonts.poppins(
                   fontSize: 15,
                   fontWeight: FontWeight.w400,
@@ -87,8 +84,7 @@ class JScreen extends StatelessWidget {
               _buildInfoTile(Icons.phone, "Phone Number", "+639123456789"),
               _buildInfoTile(Icons.cake, "Birth Date", "10 July 2003"),
               const SizedBox(height: 40),
-              Text(
-                "Sign2Speak+",
+              Text("Sign2Speak+",
                 style: GoogleFonts.poppins(
                   fontSize: 12,
                   color: Colors.white54,

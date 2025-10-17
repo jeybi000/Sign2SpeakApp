@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'home.dart'; // for HomeScreen
+import 'home.dart';
 
 void main() {
   runApp(const Sign2SpeakApp());
@@ -67,8 +67,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             height: 350,
                           ),
                           SizedBox(height: 1),
-                          Text(
-                            "SIGN2SPEAK+",
+                          Text("SIGN2SPEAK+",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: "SF Pro Display",
@@ -78,8 +77,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                           ),
                           SizedBox(height: 5),
-                          Text(
-                            "Breaking Barriers with Every Gesture",
+                          Text("Breaking Barriers with Every Gesture",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: "SF Pro Display",
@@ -99,8 +97,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           SizedBox(height: 40),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 24),
-                            child: Text(
-                              "Your First Step to Sign\nLanguage Made Easy.",
+                            child: Text("Your First Step to Sign\nLanguage Made Easy.",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: "SF Pro Display",
@@ -113,8 +110,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           SizedBox(height: 12),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 40),
-                            child: Text(
-                              "Simple, step-by-step lessons made just for beginners!",
+                            child: Text("Simple, step-by-step lessons made just for beginners!",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: "SF Pro Display",

@@ -32,8 +32,7 @@ class AlphaPage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          "Alphabet",
+        title: Text("Alphabet",
           style: GoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.w700,
@@ -77,8 +76,7 @@ class AlphaPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Master A to Z in sign language—\nsimple, visual, and beginner-\nfriendly.",
+                  Text("Master A to Z in sign language—\nsimple, visual, and beginner-\nfriendly.",
                     style: GoogleFonts.poppins(
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
@@ -87,8 +85,7 @@ class AlphaPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 14),
-                  Text(
-                    "Tap a letter to preview its sign image.",
+                  Text("Tap a letter to preview its sign image.",
                     style: GoogleFonts.poppins(
                       fontSize: 13,
                       fontWeight: FontWeight.w400,
@@ -211,8 +208,7 @@ class AlphaPage extends StatelessWidget {
                     onPressed: () => Navigator.of(context).pop(),
                     icon: const Icon(Icons.close,
                         color: Colors.black54, size: 18),
-                    label: Text(
-                      "Close",
+                    label: Text("Close",
                       style: GoogleFonts.poppins(
                         color: Colors.black54,
                         fontSize: 14,

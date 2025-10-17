@@ -320,8 +320,7 @@ class _WifiStatusPageState extends State<WifiStatusPage> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          "Wi-Fi Status",
+        title: Text("Wi-Fi Status",
           style: GoogleFonts.poppins(
             fontSize: 18,
             fontWeight: FontWeight.w700,
@@ -443,8 +442,7 @@ class _WifiStatusPageState extends State<WifiStatusPage> {
                           ),
                           elevation: 0,
                         ),
-                        child: Text(
-                          "Refresh",
+                        child: Text("Refresh",
                           style: GoogleFonts.poppins(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,

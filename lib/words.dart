@@ -59,8 +59,7 @@ class WordsPage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          "Basic Words",
+        title: Text("Basic Words",
           style: GoogleFonts.poppins(
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -108,8 +107,7 @@ class WordsPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Easily learn common and\neveryday words in sign language!",
+                  Text("Easily learn common and\neveryday words in sign language!",
                     style: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -118,8 +116,7 @@ class WordsPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 14),
-                  Text(
-                    "Tap a card to preview the sign image.",
+                  Text("Tap a card to preview the sign image.",
                     style: GoogleFonts.poppins(
                       fontSize: 13,
                       fontWeight: FontWeight.w400,
@@ -208,8 +205,7 @@ class WordsPage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  label,
+                Text(label,
                   style: GoogleFonts.poppins(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
@@ -229,8 +225,7 @@ class WordsPage extends StatelessWidget {
                         return Container(
                           color: const Color(0xFF26263A),
                           alignment: Alignment.center,
-                          child: Text(
-                            "Image not found:\n$assetPath",
+                          child: Text("Image not found:\n$assetPath",
                             textAlign: TextAlign.center,
                             style: GoogleFonts.poppins(
                               fontSize: 12,
@@ -251,8 +246,7 @@ class WordsPage extends StatelessWidget {
                     onPressed: () => Navigator.of(context).pop(),
                     icon: const Icon(Icons.close,
                         color: Colors.white70, size: 18),
-                    label: Text(
-                      "Close",
+                    label: Text("Close",
                       style: GoogleFonts.poppins(
                         color: Colors.white70,
                         fontSize: 13,
