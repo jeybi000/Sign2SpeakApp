@@ -14,6 +14,7 @@ dependencies:
   flutter_tts: ^4.2.3
   provider: ^6.1.1
   web_socket_channel: ^2.4.0
+  flip_card: ^0.7.0
 
 dev_dependencies:
   flutter_test:
@@ -64,3 +65,16 @@ flutter:
     - assets/letterX.png
     - assets/letterY.png
     - assets/letterZ.png
+    - assets/3dCASE.png
+    - assets/3dGLOVE.png
+    - assets/3dPOTENTIOMETERCLAW.png
+    - assets/ads1115PNG.png
+    - assets/boostermodulePNG.png
+    - assets/esp32PNG.png
+    - assets/glovePNG.png
+    - assets/lipobatteryPNG.png
+    - assets/mpu6050PNG.png
+    - assets/perfboardPNG.png
+    - assets/potentiometerPNG.png
+    - assets/switchPNG.png
+    - assets/tp4056PNG.png
