@@ -70,9 +70,11 @@ class AboutScreen extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 6),
                           decoration: BoxDecoration(
+                            // ignore: deprecated_member_use
                             color: const Color(0xFF5B8CFF).withOpacity(.18),
                             borderRadius: BorderRadius.circular(999),
                             border: Border.all(
+                              // ignore: deprecated_member_use
                               color: const Color(0xFF5B8CFF).withOpacity(.5),
                             ),
                           ),

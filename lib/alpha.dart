@@ -65,6 +65,7 @@ class AlphaPage extends StatelessWidget {
                 width: 180,
                 height: 180,
                 decoration: BoxDecoration(
+                  // ignore: deprecated_member_use
                   color: const Color(0xFF0066FF).withOpacity(0.25),
                   borderRadius: BorderRadius.circular(90),
                 ),

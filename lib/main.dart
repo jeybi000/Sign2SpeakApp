@@ -15,6 +15,7 @@ class Sign2SpeakApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Colors.transparent,
+        // ignore: deprecated_member_use
         useMaterial3: false,
       ),
       home: const OnboardingScreen(),

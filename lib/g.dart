@@ -206,6 +206,7 @@ class _GScreenState extends State<GScreen> {
                           style: GoogleFonts.poppins(
                             fontSize: 14,
                             height: 1.6,
+                            // ignore: deprecated_member_use
                             color: Colors.white.withOpacity(0.9),
                           ),
                           textAlign: TextAlign.justify,
@@ -338,6 +339,7 @@ class _GScreenState extends State<GScreen> {
                 height: 28,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
+                  // ignore: deprecated_member_use
                   color: Colors.white.withOpacity(0.9),
                   shape: BoxShape.circle,
                 ),
@@ -359,6 +361,7 @@ class _GScreenState extends State<GScreen> {
                   style: GoogleFonts.poppins(
                     fontSize: 13,
                     height: 1.5,
+                    // ignore: deprecated_member_use
                     color: Colors.white.withOpacity(0.9),
                   ),
                 ),
@@ -385,6 +388,7 @@ class _GScreenState extends State<GScreen> {
           width: isActive ? 24 : 16,
           height: 3,
           decoration: BoxDecoration(
+            // ignore: deprecated_member_use
             color: isActive ? Colors.white : Colors.white.withOpacity(0.4),
             borderRadius: BorderRadius.circular(2),
           ),
@@ -481,6 +485,7 @@ class _GScreenState extends State<GScreen> {
             comp["desc"]!,
             style: GoogleFonts.poppins(
               fontSize: 12,
+              // ignore: deprecated_member_use
               color: Colors.white.withOpacity(0.9),
               height: 1.4,
             ),

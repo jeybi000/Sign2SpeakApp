@@ -622,6 +622,7 @@ class _AlphabetPainter extends CustomPainter {
           style: GoogleFonts.poppins(
             fontSize: p.fontSize,
             fontWeight: FontWeight.w600,
+            // ignore: deprecated_member_use
             color: letterColor.withOpacity(opacity),
             shadows: const [
               Shadow(

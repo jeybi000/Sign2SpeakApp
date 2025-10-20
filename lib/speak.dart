@@ -199,8 +199,10 @@ class _SpeakScreenState extends State<SpeakScreen> {
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
+                          // ignore: deprecated_member_use
                           color: Colors.white.withOpacity(0.12),
                           border: Border.all(
+                            // ignore: deprecated_member_use
                             color: Colors.white.withOpacity(0.3),
                           ),
                         ),
