@@ -22,6 +22,8 @@ class _SpeakScreenState extends State<SpeakScreen> {
   WebSocketChannel? _channel;
   final String esp32Ip = 'ws://192.168.4.1:80';
 
+  String? _lastGesture; // ✅ Track last spoken gesture
+
   LinearGradient get _backgroundGradient => const LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
@@ -52,8 +54,6 @@ class _SpeakScreenState extends State<SpeakScreen> {
   void initState() {
     super.initState();
     _initTts();
-
-    // Connect to ESP32 WebSocket on start
     _connectWebSocket();
   }
 
@@ -74,11 +74,11 @@ class _SpeakScreenState extends State<SpeakScreen> {
         ],
       );
     } catch (_) {
-      // iOS-only setting; ignore on other platforms
+      // Ignore for Android
     }
   }
 
-  // WebSocket connection
+  // 🔌 WebSocket connection
   void _connectWebSocket() {
     _channel?.sink.close(status.goingAway);
 
@@ -86,45 +86,50 @@ class _SpeakScreenState extends State<SpeakScreen> {
       _channel = WebSocketChannel.connect(Uri.parse(esp32Ip));
       _channel!.stream.listen(
         (message) async {
-          final newData = message.toString().trim();
-          if (newData.isEmpty) return;
+          final newData = message.toString().trim().toUpperCase();
+          if (newData.isEmpty || !mounted) return;
 
-          if (!mounted) return;
+          // ✅ Reset gesture tracker when idle
+          if (newData == "NONE" || newData == "IDLE") {
+            _lastGesture = null;
+            return;
+          }
 
-          setState(() {
-            _gesturesCtrl.text += newData.toUpperCase();
-            _gesturesCtrl.selection = TextSelection.fromPosition(
-              TextPosition(offset: _gesturesCtrl.text.length),
-            );
-          });
-
-          try {
-            await _tts.stop();
-            await _tts.speak(newData.toUpperCase());
+          // ✅ Speak only once per new gesture
+          if (_lastGesture != newData) {
+            _lastGesture = newData;
 
             setState(() {
-              if (_textToSpeakCtrl.text.isNotEmpty) {
-                _textToSpeakCtrl.text += ' ';
-              }
-              _textToSpeakCtrl.text += newData.toUpperCase();
+              _gesturesCtrl.text = newData;
             });
-          } catch (e) {
-            if (mounted) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Speech error: $e'),
-                  behavior: SnackBarBehavior.floating,
-                ),
-              );
+
+            try {
+              await _tts.stop();
+              await _tts.speak(newData);
+
+              setState(() {
+                if (_textToSpeakCtrl.text.isNotEmpty) {
+                  _textToSpeakCtrl.text += ' ';
+                }
+                _textToSpeakCtrl.text += newData;
+
+                // ✅ Clear gesture field after speaking
+                _gesturesCtrl.clear();
+              });
+            } catch (e) {
+              if (mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Speech error: $e'),
+                    behavior: SnackBarBehavior.floating,
+                  ),
+                );
+              }
             }
           }
         },
-        onError: (error) {
-          _retryConnection();
-        },
-        onDone: () {
-          _retryConnection();
-        },
+        onError: (error) => _retryConnection(),
+        onDone: () => _retryConnection(),
         cancelOnError: true,
       );
     } catch (_) {
@@ -144,8 +149,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content:
-              Text('Nothing to speak.'),
+          content: Text('Nothing to speak.'),
           behavior: SnackBarBehavior.floating,
         ),
       );
@@ -199,10 +203,8 @@ class _SpeakScreenState extends State<SpeakScreen> {
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          // ignore: deprecated_member_use
                           color: Colors.white.withOpacity(0.12),
                           border: Border.all(
-                            // ignore: deprecated_member_use
                             color: Colors.white.withOpacity(0.3),
                           ),
                         ),
@@ -214,7 +216,8 @@ class _SpeakScreenState extends State<SpeakScreen> {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    Text("Sign2Speak+",
+                    Text(
+                      "Sign2Speak+",
                       style: GoogleFonts.inter(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
@@ -224,7 +227,8 @@ class _SpeakScreenState extends State<SpeakScreen> {
                   ],
                 ),
                 const SizedBox(height: 40),
-                Text("Sign your words and hear them speak—real-time magic with every move!",
+                Text(
+                  "Sign your words and hear them speak—real-time magic with every move!",
                   style: GoogleFonts.inter(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
@@ -233,7 +237,8 @@ class _SpeakScreenState extends State<SpeakScreen> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                Text("Data Logs",
+                Text(
+                  "Data Logs",
                   style: GoogleFonts.inter(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
@@ -270,7 +275,8 @@ class _SpeakScreenState extends State<SpeakScreen> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                Text("Gestures",
+                Text(
+                  "Gestures",
                   style: GoogleFonts.inter(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
@@ -296,6 +302,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
                         ),
                         child: TextField(
                           controller: _gesturesCtrl,
+                          readOnly: true,
                           decoration: const InputDecoration(
                             border: InputBorder.none,
                             contentPadding:
@@ -339,7 +346,8 @@ class _SpeakScreenState extends State<SpeakScreen> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: Text("Speech",
+                      child: Text(
+                        "Speech",
                         style: GoogleFonts.inter(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,

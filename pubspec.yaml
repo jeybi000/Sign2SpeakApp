@@ -24,7 +24,7 @@ dev_dependencies:
 
 flutter_icons:
   android: true
-  image_path: "assets/mobileappICON.jpg"
+  image_path: "assets/icon.png"
 
 flutter:
   uses-material-design: true
@@ -39,6 +39,7 @@ flutter:
     - assets/speaker.png
     - assets/scsLOGO.png
     - assets/cctLOGO.png
+    - assets/icon.png
     - assets/letterA.png
     - assets/letterB.png
     - assets/letterC.png

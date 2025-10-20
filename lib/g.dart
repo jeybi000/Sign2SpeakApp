@@ -10,7 +10,8 @@ class GScreen extends StatefulWidget {
   State<GScreen> createState() => _GScreenState();
 }
 
-class _GScreenState extends State<GScreen> {
+class _GScreenState extends State<GScreen>
+    with SingleTickerProviderStateMixin {
   final PageController _aboutController =
       PageController(viewportFraction: 0.85);
   final ScrollController _hardwareScroll = ScrollController();
@@ -18,10 +19,15 @@ class _GScreenState extends State<GScreen> {
 
   double _hardwareProgress = 0.0;
   double _componentsProgress = 0.0;
+  late AnimationController _animController;
 
   @override
   void initState() {
     super.initState();
+
+    _animController =
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 800))
+          ..forward();
 
     _hardwareScroll.addListener(() {
       setState(() {
@@ -47,6 +53,7 @@ class _GScreenState extends State<GScreen> {
     _hardwareScroll.dispose();
     _componentsScroll.dispose();
     _aboutController.dispose();
+    _animController.dispose();
     super.dispose();
   }
 
@@ -54,9 +61,8 @@ class _GScreenState extends State<GScreen> {
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [
-          Color(0xFF1F2A44),
-          Color(0xFF2A3E68),
-          Color(0xFF3A4F85),
+          Color(0xFF0C1220),
+          Color(0xFF101829),
         ],
       );
 
@@ -64,16 +70,15 @@ class _GScreenState extends State<GScreen> {
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [
-          Color(0xFF21263A),
-          Color(0xFF2A3E68),
+          Color(0xFF151B2F),
+          Color(0xFF1C2336),
         ],
       );
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final double cardWidth =
-        (screenWidth / 2) - 17; // fits 2 per row with spacing
+    final double cardWidth = (screenWidth / 2) - 17;
     const double cardHeight = 200;
 
     final aboutTexts = [
@@ -87,61 +92,55 @@ class _GScreenState extends State<GScreen> {
         "name": "ESP32",
         "image": "assets/esp32PNG.png",
         "desc":
-            "The ESP32 is a low-cost microcontroller with built-in Wi-Fi and Bluetooth, used for wireless data transmission and control."
+            "Low-cost microcontroller with built-in Wi-Fi and Bluetooth for wireless data transmission."
       },
       {
         "name": "MPU6050",
         "image": "assets/mpu6050PNG.png",
         "desc":
-            "The MPU6050 is a 6-axis motion sensor that combines an accelerometer and a gyroscope to measure orientation and movement."
+            "6-axis motion sensor combining accelerometer and gyroscope for orientation and movement tracking."
       },
       {
         "name": "Booster Power Module",
         "image": "assets/boostermodulePNG.png",
-        "desc":
-            "This module boosts the power supply voltage to ensure stable operation of components like sensors and microcontrollers."
+        "desc": "Boosts power supply voltage to ensure stable component operation."
       },
       {
         "name": "ADS1115",
         "image": "assets/ads1115PNG.png",
-        "desc":
-            "The ADS1115 is a 16-bit ADC module that converts analog signals from sensors into digital values for accurate readings."
+        "desc": "16-bit ADC module that converts analog signals into digital readings."
       },
-      {
-        "name": "Potentiometer",
-        "image": "assets/potentiometerPNG.png",
-        "desc":
-            "Type of variable resistor used to adjust voltage or signal levels in electronic circuits."
+      { 
+        "name": "Potentiometer", 
+        "image": "assets/potentiometerPNG.png", 
+        "desc": "Type of variable resistor used to adjust voltage or signal levels in electronic circuits." 
       },
-      {
-        "name": "Lithium Ion Battery",
-        "image": "assets/lipobatteryPNG.png",
-        "desc":
-            "Type of rechargeable battery that uses lithium ions as the main component of its electrochemical cells."
+      { 
+        "name": "Lithium Ion Battery", 
+        "image": "assets/lipobatteryPNG.png", 
+        "desc": "Type of rechargeable battery that uses lithium ions as the main component of its electrochemical cells." 
+      }, 
+       
+      { 
+        "name": "TP4056 Module", 
+        "image": "assets/tp4056PNG.png", 
+        "desc": "Lithium ion battery charging module that safely charges 3.7V batteries via a 5V USB input with built-in protection and status indicator." 
       },
-      {
-        "name": "TP4056 Module",
-        "image": "assets/tp4056PNG.png",
-        "desc":
-            "Lithium ion battery charging module that safely charges 3.7V batteries via a 5V USB input with built-in protection and status indicator."
-      },
-      {
-        "name": "Mini Rocker Switch",
-        "image": "assets/switchPNG.png",
-        "desc":
-            "A small on/off switch that controls the flow of current in a circuit by rocking back and forth between two positions."
-      },
-      {
-        "name": "Silicone Coated Glove",
-        "image": "assets/glovePNG.png",
-        "desc":
-            "Serves as the base of the smart glove, providing flexibility, durability, and stable surface for mounting sensors and electronic components."
-      },
-      {
-        "name": "Perf Board/Proto Board",
-        "image": "assets/perfboardPNG.png",
-        "desc":
-            "A board with pre-drilled holes used for mounting and soldering electronic components to create circuits."
+       
+      { 
+        "name": "Mini Rocker Switch", 
+        "image": "assets/switchPNG.png", 
+        "desc": "A small on/off switch that controls the flow of current in a circuit by rocking back and forth between two positions." 
+      }, 
+      { 
+        "name": "Silicone Coated Glove", 
+        "image": "assets/glovePNG.png", 
+        "desc": "Serves as the base of the smart glove, providing flexibility, durability, and stable surface for mounting sensors and electronic components." 
+      }, 
+      { 
+        "name": "Perf Board/Proto Board", 
+        "image": "assets/perfboardPNG.png", 
+        "desc": "A board with pre-drilled holes used for mounting and soldering electronic components to create circuits." 
       },
     ];
 
@@ -154,10 +153,11 @@ class _GScreenState extends State<GScreen> {
           centerTitle: true,
           title: Text(
             "About",
-            style: GoogleFonts.poppins(
+            style: GoogleFonts.inter(
               fontSize: 18,
               fontWeight: FontWeight.w600,
               color: Colors.white,
+              letterSpacing: 0.2,
             ),
           ),
           leading: IconButton(
@@ -169,159 +169,157 @@ class _GScreenState extends State<GScreen> {
               );
             },
           ),
-          flexibleSpace: Container(
-            decoration: BoxDecoration(gradient: _backgroundGradient),
-          ),
           backgroundColor: Colors.transparent,
         ),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // ===== System Info Carousel =====
-              SizedBox(
-                height: 180,
-                child: PageView.builder(
-                  controller: _aboutController,
-                  itemCount: aboutTexts.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 8),
-                      padding: const EdgeInsets.all(18),
-                      decoration: BoxDecoration(
-                        gradient: _cardGradient,
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color(0x33000000),
-                            blurRadius: 10,
-                            offset: Offset(0, 4),
+        body: FadeTransition(
+          opacity: _animController,
+          child: SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(0, 0.05),
+              end: Offset.zero,
+            ).animate(CurvedAnimation(
+              parent: _animController,
+              curve: Curves.easeOutCubic,
+            )),
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 180,
+                    child: PageView.builder(
+                      controller: _aboutController,
+                      itemCount: aboutTexts.length,
+                      itemBuilder: (context, index) {
+                        return AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          margin: const EdgeInsets.symmetric(horizontal: 8),
+                          padding: const EdgeInsets.all(18),
+                          decoration: BoxDecoration(
+                            gradient: _cardGradient,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color(0x66000000),
+                                blurRadius: 10,
+                                offset: Offset(0, 4),
+                              ),
+                            ],
                           ),
+                          child: Center(
+                            child: Text(
+                              aboutTexts[index],
+                              style: GoogleFonts.inter(
+                                fontSize: 14,
+                                height: 1.6,
+                                color: Colors.white.withOpacity(0.9),
+                              ),
+                              textAlign: TextAlign.justify,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    "Hardware",
+                    style: GoogleFonts.inter(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: const Color(0xFF0066FF),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    height: cardHeight,
+                    child: SingleChildScrollView(
+                      controller: _hardwareScroll,
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          _hardwareCard("assets/3dGLOVE.png", "Smart Glove",
+                              cardWidth, cardHeight),
+                          const SizedBox(width: 8),
+                          _hardwareCard("assets/3dPOTENTIOMETERCLAW.png",
+                              "Finger Frame", cardWidth, cardHeight),
+                          const SizedBox(width: 8),
+                          _hardwareCard("assets/3dCASE.png", "Component Case",
+                              cardWidth, cardHeight),
                         ],
                       ),
-                      child: Center(
-                        child: Text(
-                          aboutTexts[index],
-                          style: GoogleFonts.poppins(
-                            fontSize: 14,
-                            height: 1.6,
-                            // ignore: deprecated_member_use
-                            color: Colors.white.withOpacity(0.9),
-                          ),
-                          textAlign: TextAlign.justify,
-                        ),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  _buildDynamicIndicator(_hardwareProgress),
+                  const SizedBox(height: 30),
+                  Text(
+                    "Components",
+                    style: GoogleFonts.inter(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: const Color(0xFF0066FF),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    height: cardHeight,
+                    child: SingleChildScrollView(
+                      controller: _componentsScroll,
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          for (var comp in components) ...[
+                            _componentCard(comp, cardWidth, cardHeight),
+                            const SizedBox(width: 8),
+                          ],
+                        ],
                       ),
-                    );
-                  },
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              // ===== Hardware Section =====
-              Text(
-                "Hardware",
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(height: 12),
-
-              SizedBox(
-                height: cardHeight,
-                child: SingleChildScrollView(
-                  controller: _hardwareScroll,
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      _hardwareCard("assets/3dGLOVE.png", "Smart Glove",
-                          cardWidth, cardHeight),
-                      const SizedBox(width: 8),
-                      _hardwareCard("assets/3dPOTENTIOMETERCLAW.png",
-                          "Finger Frame", cardWidth, cardHeight),
-                      const SizedBox(width: 8),
-                      _hardwareCard("assets/3dCASE.png", "Component Case",
-                          cardWidth, cardHeight),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-              const SizedBox(height: 8),
-              _buildDynamicIndicator(_hardwareProgress),
-
-              const SizedBox(height: 30),
-
-              // ===== Components Section =====
-              Text(
-                "Components",
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(height: 12),
-
-              SizedBox(
-                height: cardHeight,
-                child: SingleChildScrollView(
-                  controller: _componentsScroll,
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      for (var comp in components) ...[
-                        _componentCard(comp, cardWidth, cardHeight),
-                        const SizedBox(width: 8),
-                      ],
-                    ],
+                  const SizedBox(height: 8),
+                  _buildDynamicIndicator(_componentsProgress),
+                  const SizedBox(height: 30),
+                  Text(
+                    "Step-by-Step Tutorial",
+                    style: GoogleFonts.inter(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w700,
+                      color: const Color(0xFF418DFF),
+                    ),
                   ),
-                ),
+                  const SizedBox(height: 12),
+                  _buildTutorialSection(),
+                ],
               ),
-              const SizedBox(height: 8),
-              _buildDynamicIndicator(_componentsProgress),
-
-              const SizedBox(height: 30),
-
-              // ===== Step-by-Step Tutorial Section =====
-              Text(
-                "Step-by-Step Tutorial",
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(height: 12),
-              _buildTutorialSection(),
-            ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  // ===== Step-by-Step Tutorial Widget =====
   Widget _buildTutorialSection() {
     final tutorialSteps = [
-      "Wear the smart glove properly, ensuring that all sensors and wires are securely connected.",
-      "Power on the system by toggling the mini rocker switch located in the component case.",
-      "Wait for the ESP32 to establish a wireless connection with the mobile application.",
-      "Open the Sign2Speak mobile app on your device and ensure Wi-Fi is enabled.",
-      "Perform the desired hand gestures slowly and clearly for accurate detection by the sensors.",
-      "View the interpreted text displayed on the app’s screen, and listen to the generated speech output.",
-      "After use, power off the device and safely disconnect the glove from the charging module if needed."
+      "Wear the smart glove properly.",
+      "Power on the system using the mini rocker switch.",
+      "Wait for the ESP32 to connect to the mobile app.",
+      "Open the Sign2Speak+ app and enable Wi-Fi.",
+      "Perform gestures clearly for accurate detection.",
+      "View interpreted text and speech output.",
+      "After use, power off the device."
     ];
 
     return Column(
       children: List.generate(tutorialSteps.length, (index) {
-        return Container(
+        return AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
           margin: const EdgeInsets.only(bottom: 10),
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
             gradient: _cardGradient,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(14),
             boxShadow: const [
               BoxShadow(
                 color: Color(0x33000000),
@@ -333,35 +331,30 @@ class _GScreenState extends State<GScreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Step Number
               Container(
                 width: 28,
                 height: 28,
                 alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  // ignore: deprecated_member_use
-                  color: Colors.white.withOpacity(0.9),
+                decoration: const BoxDecoration(
+                  color: Color(0xFF0066FF),
                   shape: BoxShape.circle,
                 ),
                 child: Text(
                   "${index + 1}",
-                  style: GoogleFonts.poppins(
+                  style: GoogleFonts.inter(
                     fontSize: 13,
                     fontWeight: FontWeight.bold,
-                    color: const Color(0xFF1F2A44),
+                    color: Colors.white,
                   ),
                 ),
               ),
               const SizedBox(width: 12),
-
-              // Step Description
               Expanded(
                 child: Text(
                   tutorialSteps[index],
-                  style: GoogleFonts.poppins(
+                  style: GoogleFonts.inter(
                     fontSize: 13,
                     height: 1.5,
-                    // ignore: deprecated_member_use
                     color: Colors.white.withOpacity(0.9),
                   ),
                 ),
@@ -373,7 +366,6 @@ class _GScreenState extends State<GScreen> {
     );
   }
 
-  // ===== Dynamic Indicator =====
   Widget _buildDynamicIndicator(double progress) {
     const count = 3;
     final activeIndex = (progress * count).clamp(0, count - 1).toInt();
@@ -385,11 +377,12 @@ class _GScreenState extends State<GScreen> {
         return AnimatedContainer(
           duration: const Duration(milliseconds: 250),
           margin: const EdgeInsets.symmetric(horizontal: 4),
-          width: isActive ? 24 : 16,
+          width: isActive ? 22 : 14,
           height: 3,
           decoration: BoxDecoration(
-            // ignore: deprecated_member_use
-            color: isActive ? Colors.white : Colors.white.withOpacity(0.4),
+            color: isActive
+                ? const Color(0xFF0066FF)
+                : Colors.white.withOpacity(0.4),
             borderRadius: BorderRadius.circular(2),
           ),
         );
@@ -397,10 +390,10 @@ class _GScreenState extends State<GScreen> {
     );
   }
 
-  // ===== Hardware Card =====
   Widget _hardwareCard(
       String image, String label, double width, double height) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
       width: width,
       height: height,
       decoration: BoxDecoration(
@@ -426,7 +419,7 @@ class _GScreenState extends State<GScreen> {
           const SizedBox(height: 8),
           Text(
             label,
-            style: GoogleFonts.poppins(
+            style: GoogleFonts.inter(
               fontSize: 14,
               fontWeight: FontWeight.w600,
               color: Colors.white,
@@ -438,7 +431,6 @@ class _GScreenState extends State<GScreen> {
     );
   }
 
-  // ===== Component Card =====
   Widget _componentCard(Map<String, String> comp, double width, double height) {
     return FlipCard(
       direction: FlipDirection.HORIZONTAL,
@@ -447,7 +439,7 @@ class _GScreenState extends State<GScreen> {
         height: height,
         decoration: BoxDecoration(
           gradient: _cardGradient,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(18),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -462,7 +454,7 @@ class _GScreenState extends State<GScreen> {
             Text(
               comp["name"]!,
               textAlign: TextAlign.center,
-              style: GoogleFonts.poppins(
+              style: GoogleFonts.inter(
                 fontSize: 13,
                 fontWeight: FontWeight.w600,
                 color: Colors.white,
@@ -478,14 +470,13 @@ class _GScreenState extends State<GScreen> {
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           gradient: _cardGradient,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(18),
         ),
         child: Center(
           child: Text(
             comp["desc"]!,
-            style: GoogleFonts.poppins(
+            style: GoogleFonts.inter(
               fontSize: 12,
-              // ignore: deprecated_member_use
               color: Colors.white.withOpacity(0.9),
               height: 1.4,
             ),

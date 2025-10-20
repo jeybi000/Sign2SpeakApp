@@ -162,7 +162,7 @@ class AboutScreen extends StatelessWidget {
               context,
               image: "assets/rile.png",
               name: "John Dominic Rile",
-              role: "UI/UX",
+              role: "UI/UX Programmer",
               route: const RScreen(),
               accentColor: const Color(0xFF2BD9C8),
             ),
