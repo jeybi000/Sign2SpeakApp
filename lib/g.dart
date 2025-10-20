@@ -154,7 +154,7 @@ class _GScreenState extends State<GScreen>
           title: Text(
             "About",
             style: GoogleFonts.inter(
-              fontSize: 18,
+              fontSize: 23,
               fontWeight: FontWeight.w600,
               color: Colors.white,
               letterSpacing: 0.2,

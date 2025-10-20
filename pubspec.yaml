@@ -24,13 +24,14 @@ dev_dependencies:
 
 flutter_icons:
   android: true
-  image_path: "assets/icon.png"
+  image_path: "assets/icon.jpg"
 
 flutter:
   uses-material-design: true
 
   assets:
     - assets/hand_logo.png
+    - assets/icon.jpg
     - assets/character.png
     - assets/rile.png
     - assets/perez.jpg
@@ -39,7 +40,6 @@ flutter:
     - assets/speaker.png
     - assets/scsLOGO.png
     - assets/cctLOGO.png
-    - assets/icon.png
     - assets/letterA.png
     - assets/letterB.png
     - assets/letterC.png

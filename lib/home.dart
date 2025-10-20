@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                   Text(
                     "Welcome!",
                     style: GoogleFonts.poppins(
-                      fontSize: 15,
+                      fontSize: 16,
                       fontWeight: FontWeight.w400,
                       color: Colors.black.withOpacity(0.8),
                     ),
@@ -283,8 +283,7 @@ class _WifiStatusPageState extends State<WifiStatusPage> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: Text(
-          "Wi-Fi Status",
+        title: Text("Wi-Fi Status",
           style: GoogleFonts.poppins(
             fontSize: 18,
             fontWeight: FontWeight.w700,

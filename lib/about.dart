@@ -22,7 +22,8 @@ class AboutScreen extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
         centerTitle: true,
-        title: Text("ABOUT US",
+        title: Text(
+          "ABOUT US",
           style: GoogleFonts.poppins(
             fontSize: 18,
             fontWeight: FontWeight.w700,
@@ -44,16 +45,15 @@ class AboutScreen extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xFF1F2A44), 
-                    Color(0xFF2A3E68), 
-                    Color(0xFF3A4F85), 
+                    Color(0xFF0F1730),
+                    Color(0xFF0F1730),
                   ],
                 ),
                 borderRadius: BorderRadius.circular(18),
                 boxShadow: const [
                   BoxShadow(
                     color: Color(0x1A000000),
-                    blurRadius: 16,
+                    blurRadius: 18,
                     spreadRadius: 2,
                     offset: Offset(0, 8),
                   ),
@@ -70,15 +70,14 @@ class AboutScreen extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 6),
                           decoration: BoxDecoration(
-                            // ignore: deprecated_member_use
-                            color: const Color(0xFF5B8CFF).withOpacity(.18),
+                            color: const Color(0xFF418DFF).withOpacity(.15),
                             borderRadius: BorderRadius.circular(999),
                             border: Border.all(
-                              // ignore: deprecated_member_use
-                              color: const Color(0xFF5B8CFF).withOpacity(.5),
+                              color: const Color(0xFF418DFF).withOpacity(.4),
                             ),
                           ),
-                          child: Text("Assistive Technology",
+                          child: Text(
+                            "Assistive Technology",
                             style: GoogleFonts.poppins(
                               fontSize: 11,
                               fontWeight: FontWeight.w600,
@@ -88,7 +87,8 @@ class AboutScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 10),
-                        Text("Sign2Speak+",
+                        Text(
+                          "Sign2Speak+",
                           style: GoogleFonts.poppins(
                             fontSize: 22,
                             fontWeight: FontWeight.w800,
@@ -97,19 +97,19 @@ class AboutScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 6),
-                        Text("From silent signs to loud connections!",
+                        Text(
+                          "From silent signs to loud connections!",
                           style: GoogleFonts.poppins(
                             fontSize: 13,
                             fontWeight: FontWeight.w400,
-                            // ignore: deprecated_member_use
-                            color: Colors.white.withOpacity(.88),
+                            color: Colors.white.withOpacity(.9),
                             height: 1.5,
                           ),
                         ),
                         const SizedBox(height: 14),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF5B8CFF),
+                            backgroundColor: const Color(0xFF0066FF),
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 16, vertical: 10),
                             elevation: 0,
@@ -120,11 +120,11 @@ class AboutScreen extends StatelessWidget {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                  builder: (_) => const GScreen()),
+                              MaterialPageRoute(builder: (_) => const GScreen()),
                             );
                           },
-                          child: Text("Know about the system",
+                          child: Text(
+                            "Know about the system",
                             style: GoogleFonts.poppins(
                               fontSize: 12.5,
                               fontWeight: FontWeight.w600,
@@ -146,14 +146,21 @@ class AboutScreen extends StatelessWidget {
                 ],
               ),
             ),
-
             const SizedBox(height: 28),
-            
+            _buildMemberCard(
+              context,
+              image: "assets/endozo.jpg",
+              name: "Jessica Endozo",
+              role: "Documentation",
+              route: const JScreen(),
+              accentColor: const Color(0xFF418DFF),
+            ),
+            const SizedBox(height: 16),
             _buildMemberCard(
               context,
               image: "assets/perez.jpg",
               name: "John Vincent Perez",
-              role: "Programmer",
+              role: "Head Developer",
               route: const PScreen(),
               accentColor: const Color(0xFF9C6BFF),
             ),
@@ -162,35 +169,22 @@ class AboutScreen extends StatelessWidget {
               context,
               image: "assets/rile.png",
               name: "John Dominic Rile",
-              role: "UI/UX Programmer",
+              role: "UI/UX Mobile Developer",
               route: const RScreen(),
               accentColor: const Color(0xFF2BD9C8),
             ),
             const SizedBox(height: 16),
             _buildMemberCard(
               context,
-              image: "assets/endozo.jpg",
-              name: "Jessica Endozo",
-              role: "Documentation",
-              route: const JScreen(),
-              accentColor: const Color(0xFF5B8CFF), 
-            ),
-            const SizedBox(height: 16),
-            _buildMemberCard(
-              context,
               image: "assets/solmiano.jpg",
               name: "Dennis Marvin Solmiano",
-              role: "Documentation",
+              role: "Assistant Programmer",
               route: const MScreen(),
-              accentColor: const Color(0xFFFFC857), 
+              accentColor: const Color(0xFFFFC857),
             ),
-
             const SizedBox(height: 15),
-
             _dividerWithLabel(""),
-
             const SizedBox(height: 15),
-
             Wrap(
               alignment: WrapAlignment.center,
               crossAxisAlignment: WrapCrossAlignment.center,
@@ -207,12 +201,11 @@ class AboutScreen extends StatelessWidget {
                 ),
               ],
             ),
-
             const SizedBox(height: 10),
-            
-            Text("Sign2Speak+",
-                textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
+            Text(
+              "Sign2Speak+",
+              textAlign: TextAlign.center,
+              style: GoogleFonts.poppins(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
                 color: const Color(0xFF6B7180),
@@ -249,13 +242,13 @@ class AboutScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: const [
             BoxShadow(
-              color: Color(0x14000000),
+              color: Color(0x15000000),
               spreadRadius: 1,
               blurRadius: 8,
               offset: Offset(0, 4),
             ),
           ],
-          border: Border.all(color: const Color(0x0F000000)),
+          border: Border.all(color: Color(0x0F000000)),
         ),
         child: Row(
           children: [
@@ -315,7 +308,8 @@ class AboutScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 8),
-           const Icon(Icons.chevron_right, color: Color(0xFF9AA0A6), size: 22),
+            const Icon(Icons.chevron_right,
+                color: Color(0xFF9AA0A6), size: 22),
           ],
         ),
       ),
