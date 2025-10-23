@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'home.dart';
-
-// Added for ESP32 WebSocket connection
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
@@ -22,7 +20,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
   WebSocketChannel? _channel;
   final String esp32Ip = 'ws://192.168.4.1:80';
 
-  String? _lastGesture; // ✅ Track last spoken gesture
+  String? _lastGesture; // track last gesture
 
   LinearGradient get _backgroundGradient => const LinearGradient(
         begin: Alignment.topLeft,
@@ -78,7 +76,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
     }
   }
 
-  // 🔌 WebSocket connection
+  // websocket connection
   void _connectWebSocket() {
     _channel?.sink.close(status.goingAway);
 
@@ -89,13 +87,13 @@ class _SpeakScreenState extends State<SpeakScreen> {
           final newData = message.toString().trim().toUpperCase();
           if (newData.isEmpty || !mounted) return;
 
-          // ✅ Reset gesture tracker when idle
+          // reset gesture
           if (newData == "NONE" || newData == "IDLE") {
             _lastGesture = null;
             return;
           }
 
-          // ✅ Speak only once per new gesture
+          // tts only once
           if (_lastGesture != newData) {
             _lastGesture = newData;
 
@@ -113,7 +111,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
                 }
                 _textToSpeakCtrl.text += newData;
 
-                // ✅ Clear gesture field after speaking
+                // automatic clear of textfield after gesture
                 _gesturesCtrl.clear();
               });
             } catch (e) {
@@ -275,8 +273,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                Text(
-                  "Gestures",
+                Text("Gestures",
                   style: GoogleFonts.inter(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
@@ -346,8 +343,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: Text(
-                        "Speech",
+                      child: Text("Speech",
                         style: GoogleFonts.inter(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -359,8 +355,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
                 ),
                 const Spacer(),
                 Center(
-                  child: Text(
-                    "Sign2Speak+",
+                  child: Text("Sign2Speak+",
                     style: GoogleFonts.inter(
                       fontSize: 12,
                       fontWeight: FontWeight.w400,
