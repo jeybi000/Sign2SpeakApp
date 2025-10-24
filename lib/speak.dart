@@ -20,7 +20,8 @@ class _SpeakScreenState extends State<SpeakScreen> {
   WebSocketChannel? _channel;
   final String esp32Ip = 'ws://192.168.4.1:80';
 
-  String? _lastGesture; // track last gesture
+  // track last gesture
+  String? _lastGesture;
 
   LinearGradient get _backgroundGradient => const LinearGradient(
         begin: Alignment.topLeft,
