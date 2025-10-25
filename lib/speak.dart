@@ -215,8 +215,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    Text(
-                      "Sign2Speak+",
+                    Text("Sign2Speak+",
                       style: GoogleFonts.inter(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
@@ -226,8 +225,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
                   ],
                 ),
                 const SizedBox(height: 40),
-                Text(
-                  "Sign your words and hear them speak—real-time magic with every move!",
+                Text("Sign your words and hear them speak—real-time magic with every move!",
                   style: GoogleFonts.inter(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
@@ -236,8 +234,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                Text(
-                  "Data Logs",
+                Text("Data Logs",
                   style: GoogleFonts.inter(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
@@ -305,7 +302,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
                             border: InputBorder.none,
                             contentPadding:
                                 EdgeInsets.symmetric(horizontal: 12),
-                            hintText: 'Recognized gesture text appears here…',
+                            hintText: "recognized letters here",
                           ),
                           style: const TextStyle(color: Colors.black),
                         ),
