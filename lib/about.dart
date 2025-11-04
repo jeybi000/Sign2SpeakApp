@@ -114,7 +114,7 @@ class AboutScreen extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(builder: (_) => const GScreen()),
                             );
