@@ -30,6 +30,7 @@ class HomeScreen extends StatelessWidget {
                     style: GoogleFonts.poppins(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
+                      // ignore: deprecated_member_use
                       color: Colors.black.withOpacity(0.8),
                     ),
                   ),
@@ -461,6 +462,7 @@ class _AlphabetPainter extends CustomPainter {
         text: TextSpan(
           text: p.letter,
           style: GoogleFonts.poppins(
+            // ignore: deprecated_member_use
             color: color.withOpacity(p.baseOpacity),
             fontSize: p.fontSize,
             fontWeight: FontWeight.w600,

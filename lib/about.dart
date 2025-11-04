@@ -69,9 +69,11 @@ class AboutScreen extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 6),
                           decoration: BoxDecoration(
+                            // ignore: deprecated_member_use
                             color: const Color(0xFF418DFF).withOpacity(.15),
                             borderRadius: BorderRadius.circular(999),
                             border: Border.all(
+                              // ignore: deprecated_member_use
                               color: const Color(0xFF418DFF).withOpacity(.4),
                             ),
                           ),
@@ -98,6 +100,7 @@ class AboutScreen extends StatelessWidget {
                           style: GoogleFonts.poppins(
                             fontSize: 13,
                             fontWeight: FontWeight.w400,
+                            // ignore: deprecated_member_use
                             color: Colors.white.withOpacity(.9),
                             height: 1.5,
                           ),
@@ -242,7 +245,7 @@ class AboutScreen extends StatelessWidget {
               offset: Offset(0, 4),
             ),
           ],
-          border: Border.all(color: Color(0x0F000000)),
+          border: Border.all(color: const Color(0x0F000000)),
         ),
         child: Row(
           children: [

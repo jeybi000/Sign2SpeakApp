@@ -114,19 +114,7 @@ class _GScreenState extends State<GScreen>
         "name": "Potentiometer", 
         "image": "assets/potentiometerPNG.png", 
         "desc": "Type of variable resistor used to adjust voltage or signal levels in electronic circuits." 
-      },
-      { 
-        "name": "Lithium Ion Battery", 
-        "image": "assets/lipobatteryPNG.png", 
-        "desc": "Type of rechargeable battery that uses lithium ions as the main component of its electrochemical cells." 
-      }, 
-       
-      { 
-        "name": "TP4056 Module", 
-        "image": "assets/tp4056PNG.png", 
-        "desc": "Lithium ion battery charging module that safely charges 3.7V batteries via a 5V USB input with built-in protection and status indicator." 
-      },
-       
+      },  
       { 
         "name": "Mini Rocker Switch", 
         "image": "assets/switchPNG.png", 
@@ -213,6 +201,7 @@ class _GScreenState extends State<GScreen>
                               style: GoogleFonts.inter(
                                 fontSize: 14,
                                 height: 1.6,
+                                // ignore: deprecated_member_use
                                 color: Colors.white.withOpacity(0.9),
                               ),
                               textAlign: TextAlign.justify,
@@ -355,6 +344,7 @@ class _GScreenState extends State<GScreen>
                   style: GoogleFonts.inter(
                     fontSize: 13,
                     height: 1.5,
+                    // ignore: deprecated_member_use
                     color: Colors.white.withOpacity(0.9),
                   ),
                 ),
@@ -382,6 +372,7 @@ class _GScreenState extends State<GScreen>
           decoration: BoxDecoration(
             color: isActive
                 ? const Color(0xFF0066FF)
+                // ignore: deprecated_member_use
                 : Colors.white.withOpacity(0.4),
             borderRadius: BorderRadius.circular(2),
           ),
@@ -477,6 +468,7 @@ class _GScreenState extends State<GScreen>
             comp["desc"]!,
             style: GoogleFonts.inter(
               fontSize: 12,
+              // ignore: deprecated_member_use
               color: Colors.white.withOpacity(0.9),
               height: 1.4,
             ),

@@ -127,6 +127,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
                     child: Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
+                        // ignore: deprecated_member_use
                         color: Colors.white.withOpacity(0.08),
                         shape: BoxShape.circle,
                       ),
@@ -135,8 +136,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
                     ),
                   ),
                   const SizedBox(width: 16),
-                  Text(
-                    "Sign2Speak+",
+                  Text("Sign2Speak+",
                     style: GoogleFonts.inter(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -147,15 +147,14 @@ class _SpeakScreenState extends State<SpeakScreen> {
               ),
               const SizedBox(height: 30),
 
-              Text(
-                "Sign your words and hear them speak—real-time magic with every move!",
+              Text("Sign your words and hear them speak—real-time magic with every move!",
                 style: GoogleFonts.inter(
                   fontSize: 14,
                   color: Colors.white70,
                   height: 1.5,
                 ),
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 70),
 
               // DATA LOGS CARD
               Container(
@@ -252,7 +251,7 @@ class _SpeakScreenState extends State<SpeakScreen> {
                           Expanded(
                             child: TextField(
                               controller: _gesturesCtrl,
-                              readOnly: false,
+                              readOnly: true,
                               decoration: const InputDecoration(
                                 hintText: "recognized letters here",
                                 border: InputBorder.none,
