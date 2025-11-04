@@ -22,8 +22,7 @@ class AboutScreen extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
         centerTitle: true,
-        title: Text(
-          "ABOUT US",
+        title: Text("ABOUT US",
           style: GoogleFonts.poppins(
             fontSize: 18,
             fontWeight: FontWeight.w700,
@@ -76,8 +75,7 @@ class AboutScreen extends StatelessWidget {
                               color: const Color(0xFF418DFF).withOpacity(.4),
                             ),
                           ),
-                          child: Text(
-                            "Assistive Technology",
+                          child: Text("Assistive Technology",
                             style: GoogleFonts.poppins(
                               fontSize: 11,
                               fontWeight: FontWeight.w600,
@@ -87,8 +85,7 @@ class AboutScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 10),
-                        Text(
-                          "Sign2Speak+",
+                        Text("Sign2Speak+",
                           style: GoogleFonts.poppins(
                             fontSize: 22,
                             fontWeight: FontWeight.w800,
@@ -97,8 +94,7 @@ class AboutScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 6),
-                        Text(
-                          "From silent signs to loud connections!",
+                        Text("From silent signs to loud connections!",
                           style: GoogleFonts.poppins(
                             fontSize: 13,
                             fontWeight: FontWeight.w400,
@@ -123,8 +119,7 @@ class AboutScreen extends StatelessWidget {
                               MaterialPageRoute(builder: (_) => const GScreen()),
                             );
                           },
-                          child: Text(
-                            "Know about the system",
+                          child: Text("Know about the system",
                             style: GoogleFonts.poppins(
                               fontSize: 12.5,
                               fontWeight: FontWeight.w600,
@@ -138,8 +133,7 @@ class AboutScreen extends StatelessWidget {
                   const SizedBox(width: 18),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
-                    child: Image.asset(
-                      "assets/character.png",
+                    child: Image.asset("assets/character.png",
                       height: 100,
                     ),
                   ),
@@ -229,7 +223,7 @@ class AboutScreen extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(16),
       onTap: () {
-        Navigator.push(
+        Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => route),
         );
